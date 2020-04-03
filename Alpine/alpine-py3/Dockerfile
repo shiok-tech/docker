@@ -15,7 +15,7 @@ LABEL maintainer="August Tu"
 # See: https://github.com/Docker-Hub-frolvlad/docker-alpine-python3/pull/13
 ENV PYTHONUNBUFFERED=1
 
-RUN echo "**** install Python ****" && \
+RUN echo "**** install Python 3 ****" && \
     apk update && \
     apk upgrade && \
     apk add --no-cache python3 && \
@@ -27,6 +27,7 @@ RUN echo "**** install Python ****" && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    echo "**** clean up ****" && \
     rm -rf \
        /var/cache/apk/* \
        /root/.cache \
